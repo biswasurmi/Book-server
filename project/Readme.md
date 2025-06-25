@@ -1,20 +1,27 @@
-# Book Management REST API (Go + Chi + JWT + Basic Auth)
+
+
+---
+
+### ✅ Here's the **fixed and polished** version of your `README.md`:
+
+````md
+# 📚 Book Management REST API (Go + Chi + JWT + Basic Auth)
 
 A simple REST API for managing books with basic CRUD operations, written in Go using the Chi router.  
-Supports Basic Authentication and JWT-based authorization. Data is stored in-memory (not persistent).
+Supports **Basic Authentication** and **JWT-based authorization**. Data is stored in-memory (non-persistent).
 
 ---
 
-## Features
+## 🚀 Features
 
 - Create, read, update, and delete books
-- Basic authentication for token retrieval and listing
-- JWT authentication for modifying books
-- In-memory storage for simplicity
+- Basic Auth for token retrieval and listing
+- JWT Auth for creating/updating/deleting
+- In-memory storage (for simplicity)
 
 ---
 
-## Book Model
+## 📘 Book Model
 
 ```json
 {
@@ -24,67 +31,88 @@ Supports Basic Authentication and JWT-based authorization. Data is stored in-mem
   "publishDate": "YYYY-MM-DD",
   "isbn": "string"
 }
-Getting Started
-Prerequisites
-Go 1.22 or higher
+````
 
-Git (optional, for cloning repo)
+---
 
-Run Server
-bash
-Copy
-Edit
+## ⚙️ Getting Started
+
+### ✅ Prerequisites
+
+* Go 1.22 or higher
+* Git (optional, for cloning)
+
+### ▶️ Run Server
+
+```bash
 go run main.go
-Command line flags:
+```
 
--auth (default true): Enable or disable authentication
+#### Command-line flags:
 
--port (default 8080): Specify port number
+| Flag    | Default | Description                      |
+| ------- | ------- | -------------------------------- |
+| `-auth` | true    | Enable or disable authentication |
+| `-port` | 8080    | Port to run the server on        |
 
-Example disabling auth:
+**Example (disable authentication):**
 
-bash
-Copy
-Edit
+```bash
 go run main.go -auth=false
-API Endpoints
-Method	Endpoint	Description	Auth Required
-GET	/api/v1/get-token	Get JWT token (Basic Auth)	Basic Auth
-GET	/api/v1/books	List all books	Basic Auth or JWT
-POST	/api/v1/books	Create a new book	JWT
-GET	/api/v1/books/{id}	Get book by UUID	JWT
-PUT	/api/v1/books/{id}	Update book by UUID	JWT
-DELETE	/api/v1/books/{id}	Delete book by UUID	JWT
+```
 
-Usage Examples
-Get JWT Token (Basic Auth)
-bash
-Copy
-Edit
+---
+
+## 🔌 API Endpoints
+
+| Method | Endpoint               | Description         | Auth Required     |
+| ------ | ---------------------- | ------------------- | ----------------- |
+| GET    | `/api/v1/get-token`    | Get JWT token       | Basic Auth        |
+| GET    | `/api/v1/books`        | List all books      | Basic or JWT Auth |
+| POST   | `/api/v1/books`        | Create a new book   | JWT               |
+| GET    | `/api/v1/books/{uuid}` | Get book by UUID    | JWT               |
+| PUT    | `/api/v1/books/{uuid}` | Update book by UUID | JWT               |
+| DELETE | `/api/v1/books/{uuid}` | Delete book by UUID | JWT               |
+
+---
+
+## 💡 Usage Examples
+
+### 🔐 Get JWT Token (via Basic Auth)
+
+```bash
 curl -u AdminUser:AdminPassword http://localhost:8080/api/v1/get-token
-Response:
+```
 
-json
-Copy
-Edit
+**Response:**
+
+```json
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
-List All Books (Basic Auth or JWT)
-bash
-Copy
-Edit
-curl -u AdminUser:AdminPassword http://localhost:8080/api/v1/books
-or with JWT token:
+```
 
-bash
-Copy
-Edit
+---
+
+### 📖 List All Books
+
+#### Using Basic Auth:
+
+```bash
+curl -u AdminUser:AdminPassword http://localhost:8080/api/v1/books
+```
+
+#### Or using JWT:
+
+```bash
 curl -H "Authorization: Bearer <TOKEN>" http://localhost:8080/api/v1/books
-Create a Book (JWT Required)
-bash
-Copy
-Edit
+```
+
+---
+
+### ➕ Create a Book (JWT Required)
+
+```bash
 curl -X POST http://localhost:8080/api/v1/books \
   -H "Authorization: Bearer <TOKEN>" \
   -H "Content-Type: application/json" \
@@ -94,11 +122,11 @@ curl -X POST http://localhost:8080/api/v1/books \
     "publishDate": "2023-01-01",
     "isbn": "123-4567890123"
   }'
-Response:
+```
 
-json
-Copy
-Edit
+**Response:**
+
+```json
 {
   "uuid": "generated-uuid",
   "name": "Go Programming",
@@ -106,15 +134,21 @@ Edit
   "publishDate": "2023-01-01",
   "isbn": "123-4567890123"
 }
-Get Book by UUID (JWT Required)
-bash
-Copy
-Edit
+```
+
+---
+
+### 🔍 Get Book by UUID (JWT Required)
+
+```bash
 curl -H "Authorization: Bearer <TOKEN>" http://localhost:8080/api/v1/books/<uuid>
-Update Book (JWT Required)
-bash
-Copy
-Edit
+```
+
+---
+
+### ✏️ Update a Book (JWT Required)
+
+```bash
 curl -X PUT http://localhost:8080/api/v1/books/<uuid> \
   -H "Authorization: Bearer <TOKEN>" \
   -H "Content-Type: application/json" \
@@ -124,16 +158,24 @@ curl -X PUT http://localhost:8080/api/v1/books/<uuid> \
     "publishDate": "2025-06-01",
     "isbn": "999-9999999999"
   }'
-Delete Book (JWT Required)
-bash
-Copy
-Edit
+```
+
+---
+
+### ❌ Delete a Book (JWT Required)
+
+```bash
 curl -X DELETE http://localhost:8080/api/v1/books/<uuid> \
   -H "Authorization: Bearer <TOKEN>"
-Notes
-Data is stored in memory and will be lost on server restart.
-
-JWT secret key is hardcoded for simplicity — consider environment variables for production.
-
-The server logs all requests with Chi's logger middleware.
 ```
+
+---
+
+## 📝 Notes
+
+* All book data is stored in memory and **will be lost on server restart**.
+* The JWT secret is hardcoded for demo purposes. Use environment variables for production.
+* All requests are logged using Chi's middleware.
+
+```
+
