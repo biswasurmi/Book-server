@@ -2,7 +2,6 @@
 
 ---
 
-### ✅ Here's the **fixed and polished** version of your `README.md`:
 
 ````md
 # 📚 Book Management REST API (Go + Chi + JWT + Basic Auth)
