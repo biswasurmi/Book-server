@@ -196,22 +196,11 @@ curl -X DELETE http://localhost:8080/api/v1/books/<uuid> \
 }
 ```
 
----
 
-## 📜 License
 
-MIT License © Urmi Biswas
 
----
 
-````
 
----
-
-📌 **To use it:**
-- Save this as `README.md` in your project.
-- Add it to Git:
-  ```bash
   git add README.md
   git commit -m "Add complete Docker + API usage guide"
   git push origin main
