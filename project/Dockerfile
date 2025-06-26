@@ -10,7 +10,7 @@ COPY . .
 RUN go build -o main .
 
 # ---------- Stage 2: Runtime ----------
-FROM debian:bullseye-slim
+FROM debian:latest
 
 WORKDIR /app
 
@@ -18,4 +18,4 @@ COPY --from=builder /app/main .
 
 EXPOSE 8080
 
-CMD ["./main"]
+CMD ["./main", "--port=8080", "--auth=true"]
